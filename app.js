@@ -1,8 +1,12 @@
 // Game State
 const state = {
-    unlockedLevel: parseInt(localStorage.getItem('tables_unlocked')) || 2, // Start with Table of 2
+    unlockedLevel: parseInt(localStorage.getItem('tables_unlocked')) || 2,
     currentLevel: 2,
     currentScene: 'dashboard',
+    settings: {
+        unlockAll: localStorage.getItem('tables_unlock_all') === 'true',
+        sequentialMode: localStorage.getItem('tables_sequential') === 'true'
+    },
     quiz: {
         questions: [],
         currentIndex: 0,
@@ -23,14 +27,47 @@ const header = document.getElementById('app-header');
 const progressBar = document.getElementById('progress-bar');
 const feedbackFooter = document.getElementById('feedback-footer');
 const levelsContainer = document.getElementById('levels-container');
+const settingsModal = document.getElementById('settings-modal');
 
 // Initialization
 document.addEventListener('DOMContentLoaded', () => {
     initDashboard();
+    initSettingsValues();
     setupEventListeners();
 });
 
+function initSettingsValues() {
+    document.getElementById('toggle-unlock-all').checked = state.settings.unlockAll;
+    document.getElementById('toggle-sequential').checked = state.settings.sequentialMode;
+}
+
 function setupEventListeners() {
+    // Settings toggles
+    document.getElementById('toggle-unlock-all').addEventListener('change', (e) => {
+        state.settings.unlockAll = e.target.checked;
+        localStorage.setItem('tables_unlock_all', state.settings.unlockAll);
+        initDashboard(); // Refresh levels
+    });
+
+    document.getElementById('toggle-sequential').addEventListener('change', (e) => {
+        state.settings.sequentialMode = e.target.checked;
+        localStorage.setItem('tables_sequential', state.settings.sequentialMode);
+    });
+
+    // Settings Modal
+    document.getElementById('settings-open').addEventListener('click', () => {
+        settingsModal.classList.add('active');
+    });
+
+    document.getElementById('settings-close').addEventListener('click', () => {
+        settingsModal.classList.remove('active');
+    });
+
+    // Close modal on outside click
+    settingsModal.addEventListener('click', (e) => {
+        if (e.target === settingsModal) settingsModal.classList.remove('active');
+    });
+
     document.getElementById('quit-btn').addEventListener('click', () => {
         if(confirm('Quit current session?')) goToScene('dashboard');
     });
@@ -75,7 +112,7 @@ function initDashboard() {
     levelsContainer.innerHTML = '';
     // Max level 20 as requested
     for (let i = 2; i <= 20; i++) {
-        const isLocked = i > state.unlockedLevel;
+        const isLocked = !state.settings.unlockAll && i > state.unlockedLevel;
         const levelCard = document.createElement('div');
         levelCard.className = `level-card ${isLocked ? 'locked' : ''} ${i === state.unlockedLevel ? 'active' : ''}`;
         
@@ -129,8 +166,11 @@ function generateQuestions(level) {
             answer: level * i
         });
     }
-    // Shuffle
-    return questions.sort(() => Math.random() - 0.5);
+    // Shuffle if not in sequential mode
+    if (!state.settings.sequentialMode) {
+        return questions.sort(() => Math.random() - 0.5);
+    }
+    return questions;
 }
 
 function showQuestion() {

@@ -6,9 +6,36 @@
     <title>Tables Master - Learn Multiplication</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Floating Settings Button */
+        .settings-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: var(--card-shadow);
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+        .settings-btn:hover { color: var(--primary); border-color: var(--primary); }
+    </style>
 </head>
 <body>
     <div class="app-container">
+        <!-- Floating Settings Button -->
+        <div id="settings-open" class="settings-btn" title="Settings">
+            <i class="fas fa-cog"></i>
+        </div>
+
         <!-- Header / Progress Area -->
         <header id="app-header" style="display: none;">
             <button class="close-btn" id="quit-btn"><i class="fas fa-times"></i></button>
@@ -86,6 +113,38 @@
                 </div>
             </div>
             <button class="btn" id="next-question-btn">Got it</button>
+        </div>
+
+        <!-- SETTINGS MODAL -->
+        <div id="settings-modal" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Settings</h3>
+                    <button class="close-btn" id="settings-close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="settings-list">
+                    <div class="settings-item">
+                        <div class="settings-info">
+                            <div class="settings-label">Unlock All Tables</div>
+                            <div class="settings-desc">Access all tables from 2 to 20 immediately.</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-unlock-all">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-info">
+                            <div class="settings-label">Sequential Mode</div>
+                            <div class="settings-desc">Keep questions in order (e.g., 2x1, 2x2...) instead of shuffling.</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-sequential">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
