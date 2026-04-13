@@ -1,7 +1,7 @@
 // Game State
 const state = {
-    unlockedLevel: parseInt(localStorage.getItem('tables_unlocked')) || 2,
-    currentLevel: 2,
+    unlockedLevel: parseInt(localStorage.getItem('tables_unlocked')) || 1, // Start with Table of 1
+    currentLevel: 1,
     currentScene: 'dashboard',
     settings: {
         unlockAll: localStorage.getItem('tables_unlock_all') === 'true',
@@ -69,7 +69,7 @@ function setupEventListeners() {
     });
 
     document.getElementById('quit-btn').addEventListener('click', () => {
-        if(confirm('Quit current session?')) goToScene('dashboard');
+        goToScene('dashboard');
     });
 
     document.getElementById('start-practice-btn').addEventListener('click', startQuiz);
@@ -94,9 +94,11 @@ function goToScene(sceneId) {
     // Header management
     if (sceneId === 'dashboard') {
         header.style.display = 'none';
+        document.getElementById('settings-open').style.display = 'flex';
         initDashboard();
     } else {
         header.style.display = 'flex';
+        document.getElementById('settings-open').style.display = 'none';
         updateProgress(0);
     }
 
@@ -110,8 +112,8 @@ function updateProgress(percent) {
 // Dashboard Logic
 function initDashboard() {
     levelsContainer.innerHTML = '';
-    // Max level 20 as requested
-    for (let i = 2; i <= 20; i++) {
+    // Max level 30 as requested
+    for (let i = 1; i <= 30; i++) {
         const isLocked = !state.settings.unlockAll && i > state.unlockedLevel;
         const levelCard = document.createElement('div');
         levelCard.className = `level-card ${isLocked ? 'locked' : ''} ${i === state.unlockedLevel ? 'active' : ''}`;
@@ -272,7 +274,7 @@ function finishQuiz() {
     
     if (passed) {
         // Unlock next level
-        if (state.currentLevel === state.unlockedLevel && state.unlockedLevel < 20) {
+        if (state.currentLevel === state.unlockedLevel && state.unlockedLevel < 30) {
             state.unlockedLevel++;
             localStorage.setItem('tables_unlocked', state.unlockedLevel);
         }

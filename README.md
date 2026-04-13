@@ -4,7 +4,9 @@ A web application designed to help users master multiplication tables through a 
 
 ## ✨ Features
 
-- **Gamified Progression**: Tables are locked until you prove your mastery of the previous ones.
+- **Gamified Progression**: Tables, Squares, and Cubes are locked until you prove your mastery.
+- **Tables Expansion**: Master multiplication tables from **1 to 30**.
+- **Powers Master Module**: NEW! Learn and test yourself on **Squares (1-50)** and **Cubes (1-30)**.
 - **Learn → Practice → Test Loop**:
   - **Learn**: Visual rhythmic display of the multiplication table.
   - **Test**: A high-stakes quiz where you must be perfect to advance.
@@ -16,8 +18,8 @@ A web application designed to help users master multiplication tables through a 
 
 1. **Clone/Download** the repository to your local machine.
 2. **Open `index.html`** in any modern web browser.
-   - *Note: For the best experience, use a local server (like Live Server in VS Code) to ensure all assets load correctly.*
-3. Start with the **Table of 2** and work your way up to **Table of 20**!
+3. Start with the **Table of 1** and work up to **30**.
+4. Click the **"Squares & Cubes"** button on the dashboard to switch to the Powers Master module.
 
 ## 🛠️ Built With
 

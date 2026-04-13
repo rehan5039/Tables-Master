@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Powers Master - Squares & Cubes</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .tabs {
+            display: flex;
+            background: white;
+            padding: 10px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            border: 2px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+        .tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+        .tab.active {
+            background-color: var(--primary);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Floating Back Button -->
+        <a href="index.html" id="back-to-tables" class="settings-btn" title="Back to Tables" style="left: 20px; right: auto; text-decoration: none;">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+
+        <!-- Header / Progress Area -->
+        <header id="app-header" style="display: none;">
+            <button class="close-btn" id="quit-btn"><i class="fas fa-times"></i></button>
+            <div class="progress-bar-outer">
+                <div id="progress-bar" class="progress-bar-inner"></div>
+            </div>
+        </header>
+
+        <!-- DASHBOARD SCENE -->
+        <section id="scene-dashboard" class="scene active">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h1 style="font-size: 32px; font-weight: 800; color: var(--secondary);">Powers Master</h1>
+                <p style="color: var(--text-muted); font-weight: 600;">Master Squares & Cubes!</p>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active" data-mode="squares">Squares (1-50)</div>
+                <div class="tab" data-mode="cubes">Cubes (1-30)</div>
+            </div>
+
+            <div class="levels-grid" id="levels-container">
+                <!-- Grid items injected here -->
+            </div>
+        </section>
+
+        <!-- LEARN SCENE -->
+        <section id="scene-learn" class="scene">
+            <div class="learn-display">
+                <h2 id="learn-title" style="margin-bottom: 20px;">Squares</h2>
+                <div id="learn-items-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <!-- Items injected here -->
+                </div>
+                <button class="btn btn-primary" id="start-practice-btn" style="margin-top: 30px;">Start Test</button>
+            </div>
+        </section>
+
+        <!-- QUIZ SCENE -->
+        <section id="scene-quiz" class="scene">
+            <div class="quiz-container">
+                <div class="quiz-question" id="quiz-question">15² = ?</div>
+                <div class="options-grid" id="options-container">
+                    <!-- Option buttons injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SUCCESS SCENE -->
+        <section id="scene-success" class="scene">
+            <div class="success-card">
+                <div class="success-icon"><i class="fas fa-bolt"></i></div>
+                <h2 style="font-size: 28px; font-weight: 800; margin-bottom: 10px;">Mastered!</h2>
+                <p id="success-message" style="color: var(--text-muted); font-weight: 600; margin-bottom: 30px;">You are now an expert!</p>
+                <button class="btn btn-primary" id="continue-btn">Continue</button>
+            </div>
+        </section>
+
+        <!-- FEEDBACK FOOTER -->
+        <div id="feedback-footer" class="feedback-footer">
+            <div class="feedback-content">
+                <div class="feedback-icon" id="feedback-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="feedback-text">
+                    <div class="feedback-title" id="feedback-title">Perfect!</div>
+                    <div id="feedback-desc">Correct answer.</div>
+                </div>
+            </div>
+            <button class="btn" id="next-question-btn">Next</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="extra.js"></script>
+</body>
+</html>
