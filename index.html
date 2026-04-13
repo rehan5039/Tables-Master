@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tables Master - Learn Multiplication</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header / Progress Area -->
+        <header id="app-header" style="display: none;">
+            <button class="close-btn" id="quit-btn"><i class="fas fa-times"></i></button>
+            <div class="progress-bar-outer">
+                <div id="progress-bar" class="progress-bar-inner"></div>
+            </div>
+        </header>
+
+        <!-- DASHBOARD SCENE -->
+        <section id="scene-dashboard" class="scene active">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h1 style="font-size: 32px; font-weight: 800; color: var(--primary);">Tables Master</h1>
+                <p style="color: var(--text-muted); font-weight: 600;">Let's master multiplication!</p>
+            </div>
+            
+            <div class="mascot-container">
+                <!-- Simple SVG Mascot -->
+                <svg width="120" height="120" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="45" fill="#58cc02" />
+                    <circle cx="35" cy="40" r="6" fill="white" />
+                    <circle cx="65" cy="40" r="6" fill="white" />
+                    <circle cx="35" cy="42" r="2" fill="black" />
+                    <circle cx="65" cy="42" r="2" fill="black" />
+                    <path d="M 35 70 Q 50 85 65 70" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" />
+                    <rect x="75" y="10" width="20" height="20" rx="4" fill="#ffc800" transform="rotate(15)" />
+                    <text x="80" y="25" font-size="12" font-weight="bold" fill="white" transform="rotate(15)">x</text>
+                </svg>
+            </div>
+
+            <div class="levels-grid" id="levels-container">
+                <!-- Level cards will be injected here -->
+            </div>
+        </section>
+
+        <!-- LEARN SCENE -->
+        <section id="scene-learn" class="scene">
+            <div class="learn-display">
+                <h2 id="learn-title" style="margin-bottom: 20px;">Table of 2</h2>
+                <div id="learn-items-container">
+                    <!-- Table rows injected here -->
+                </div>
+                <button class="btn btn-primary" id="start-practice-btn" style="margin-top: 30px;">I've Paced This!</button>
+            </div>
+        </section>
+
+        <!-- QUIZ SCENE -->
+        <section id="scene-quiz" class="scene">
+            <div class="quiz-container">
+                <div class="quiz-question" id="quiz-question">2 x 4 = ?</div>
+                <div class="options-grid" id="options-container">
+                    <!-- Option buttons injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SUCCESS SCENE -->
+        <section id="scene-success" class="scene">
+            <div class="success-card">
+                <div class="success-icon"><i class="fas fa-crown"></i></div>
+                <h2 style="font-size: 28px; font-weight: 800; margin-bottom: 10px;">Table Mastered!</h2>
+                <p id="success-message" style="color: var(--text-muted); font-weight: 600; margin-bottom: 30px;">You are now an expert in Table of 2.</p>
+                <button class="btn btn-primary" id="continue-btn">Continue</button>
+            </div>
+        </section>
+
+        <!-- FEEDBACK FOOTER -->
+        <div id="feedback-footer" class="feedback-footer">
+            <div class="feedback-content">
+                <div class="feedback-icon" id="feedback-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="feedback-text">
+                    <div class="feedback-title" id="feedback-title">Excellent!</div>
+                    <div id="feedback-desc">You got it right.</div>
+                </div>
+            </div>
+            <button class="btn" id="next-question-btn">Got it</button>
+        </div>
+    </div>
+
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
